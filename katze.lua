@@ -1,7 +1,8 @@
 package.path  = package.path..";./LuaSocket/?.lua"
 package.cpath = package.cpath..";./LuaSocket/?.dll"
 
-k = {}
+k = {} -- table principale
+k.debug = true
 k.dir = {}
 k.dir.main = lfs.writedir().."/Scripts"
 k.dir.logs = lfs.writedir().."/Logs/KatzePit"
@@ -33,44 +34,37 @@ k.loop.current_time = nil
 k.loop.fps_counter = {}
 k.loop.fps_counter.tot = 0
 
+dofile(lfs.writedir().."/Scripts/low_level.lua")
 
-
+env.info("KTZ_PIT: chargement du module \"logging\"")
 dofile(k.dir.main.."/logging.lua")
+k.info("module logging chargé")
 
-
--- k.log("remplacement de la fonction \"dofile\" par une version loggée")
--- old_dofile = dofile
--- new_dofile = function(p)
--- 	k.log("chargement du fichier "..(p or ""))
--- 	old_dofile(p)
--- end
--- dofile = new_dofile ()
-
--------------------------------------------------------------------------------
--- Fichier de configuration
-k.log("chargement du fichier de configuration")
+k.info("chargement du fichier de configuration")
 dofile ( lfs.writedir().."Scripts\\siocConfig.lua" ) -- parsing des options
+
 k.config.sioc.fast = (k.config.sioc.fast or 100) / 1000 -- intervalle boucle d'export rapide
-k.config.sioc.slow = (k.config.sioc.slow or 500) / 1000 -- intervalle boucle d'export lente
-k.config.sioc.ip = k.config.sioc.ip or "127.0.0.1" -- IP serveur SIOC
-k.config.sioc.port = k.config.sioc.port or 8092 -- port serveur SIOC
-k.config.fps = k.config.fps or 5 -- intervalle échantillonages FPS
 k.log("fast: "..k.config.sioc.fast)
+
+k.config.sioc.slow = (k.config.sioc.slow or 500) / 1000 -- intervalle boucle d'export lente
 k.log("slow: "..k.config.sioc.slow)
+
+k.config.sioc.ip = k.config.sioc.ip or "127.0.0.1" -- IP serveur SIOC
 k.log("sioc ip: "..k.config.sioc.ip)
+
+k.config.sioc.port = k.config.sioc.port or 8092 -- port serveur SIOC
 k.log("sioc port: "..k.config.sioc.port)
+
+k.config.fps = k.config.fps or 5 -- intervalle échantillonages FPS
 k.log("intervalle FPS: "..k.config.fps)
 
-
+k.info("configuration chargée")
 
 dofile(lfs.writedir().."Scripts\\sioc.lua")
 dofile(lfs.writedir().."Scripts\\low_level.lua")
 
 
 k.exportFC3done = false
-
-function rendre_hommage_au_grand_Katze()
-end
 
 
 k.mission_start = function()
