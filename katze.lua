@@ -1,5 +1,4 @@
-package.path  = package.path..";./LuaSocket/?.lua"
-package.cpath = package.cpath..";./LuaSocket/?.dll"
+
 
 k = {} -- table principale
 k.debug = true
