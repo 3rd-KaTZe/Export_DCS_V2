@@ -1,4 +1,4 @@
-env.info("KTZ_PIT: chargement des fonctions de bas niveau")
+env.info("KTZ_PIT: chargement du module \"low_level\"")
 
 k.file_exists = function(p)
 	env.info("test de l'existence du fichier: "..p)
@@ -20,4 +20,4 @@ new_dofile = function(p)
 end
 dofile = new_dofile
 
-env.info("KTZ_PIT: chargement des fonctions de bas niveau réussi")
+env.info("KTZ_PIT: chargement du module \"low_level\" réussi")
