@@ -1,16 +1,15 @@
-
-k.exportFC3done = false
-k.current_aircraft = nil
-
 local PrevLuaExportStart=LuaExportStart;
 
 LuaExportStart=function()
+
 ---- (Hook) Works once just before mission start.
 	k.mission_start(); -- Initialisation du FPS checker
+			
 	if PrevLuaExportStart then
 		PrevLuaExportStart();
 	end
 end
+
 
 ------------------------------------------------------------------------
 --    Séquence : avant chaque image            							  --
@@ -25,7 +24,7 @@ end
 
 local prevNextEvent = LuaExportActivityNextEvent
 
-LuaExportActivityNextEvent = function()
+LuaExportActivityNextEvent = function(t)
 	
 	local lDevice = GetDevice(0)
 	if type(lDevice) == "table" then
@@ -60,7 +59,7 @@ LuaExportActivityNextEvent = function()
 	end
 		
 	if prevNextEvent then
-		prevNextEvent()
+		prevNextEvent(t)
 	end
 
 end
@@ -81,8 +80,8 @@ LuaExportAfterNextFrame = function()
 		
 		if k.sioc.ok and k.loop.fast ~= nil then
 			k.log("loop.fast")
-			k.loop.fast()  -- Export séquence rapide
 			k.sioc.receive() -- Reception Commande
+			k.loop.fast()  -- Export séquence rapide
 		end
 		
 		-- calcul de la date de fin du prochain intervalle de temps
