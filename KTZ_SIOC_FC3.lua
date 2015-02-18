@@ -17,7 +17,7 @@ k.fc3.weapon_init = function(self)
 end
 	
 k.fc3.export.slow = function(self)
-		if LoGetIndicatedAirSpeed() ~= nil then
+	if LoGetIndicatedAirSpeed() ~= nil then
 			
 		-- ============== Horloge de Mission ============================================================		
 		k.sioc.send(42,LoGetModelTime())-- Heure de la mission
@@ -247,7 +247,7 @@ k.fc3.export.slow = function(self)
 end
 
 k.fc3.export.fast = function(self)
-		if LoGetIndicatedAirSpeed() ~= nil then
+	if LoGetIndicatedAirSpeed() ~= nil then
 					
 		-- ============== Parametres de Vol ===============================================================
 		k.sioc.send(102,LoGetIndicatedAirSpeed() * 3.6 )-- m/sec converti en km/hr
