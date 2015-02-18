@@ -33,14 +33,14 @@ k.loop.current_time = nil
 k.loop.fps_counter = {}
 k.loop.fps_counter.tot = 0
 
-dofile(lfs.writedir().."/Scripts/low_level.lua")
+dofile(k.dir.main.."/low_level.lua")
 
 env.info("KTZ_PIT: chargement du module \"logging\"")
 dofile(k.dir.main.."/logging.lua")
 k.info("module logging chargé")
 
 k.info("chargement du fichier de configuration")
-dofile ( lfs.writedir().."Scripts\\siocConfig.lua" ) -- parsing des options
+dofile(k.dir.main.."/siocConfig.lua" ) -- parsing des options
 
 k.config.sioc.fast = (k.config.sioc.fast or 100) / 1000 -- intervalle boucle d'export rapide
 k.log("fast: "..k.config.sioc.fast)
@@ -61,7 +61,6 @@ k.info("configuration chargée")
 
 dofile(lfs.writedir().."Scripts\\sioc.lua")
 dofile(lfs.writedir().."Scripts\\low_level.lua")
-
 
 k.mission_start = function()
 	k.log("début d'une nouvelle mission")
@@ -116,16 +115,16 @@ if k.sioc.ok then
 	k.loop.next_sample.fps = k.loop.current_time + k.loop.sample.fps
 
 	k.log("chargement des overload")
-	dofile(lfs.writedir().."/Scripts/overload.lua")
+	dofile(k.main.dir.."overload.lua")
 else
 	k.log("erreur lors de la tentative de connexion")
 end
 
 k.file = {
-	lfs.writedir().."/Scripts/KTZ_SIOC_FC3.lua",
-	lfs.writedir().."/Scripts/KTZ_SIOC_Mi8.lua",
-	lfs.writedir().."/Scripts/KTZ_SIOC_UH1.lua",
-	lfs.writedir().."/Scripts/KTZ_SIOC_KA50.lua"
+	k.main.dir.."/KTZ_SIOC_FC3.lua",
+	k.main.dir.."/KTZ_SIOC_Mi8.lua",
+	k.main.dir.."/KTZ_SIOC_UH1.lua",
+	k.main.dir.."/KTZ_SIOC_KA50.lua"
 }
 
 
