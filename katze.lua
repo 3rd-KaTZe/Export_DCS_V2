@@ -2,6 +2,7 @@ package.path  = package.path..";./LuaSocket/?.lua"
 package.cpath = package.cpath..";./LuaSocket/?.dll"
 
 k = {}
+k.dir = {}
 k.dir.main = lfs.writedir().."/Scripts"
 k.dir.logs = lfs.writedir().."/Logs/KatzePit"
 k.current_aircraft = nil
