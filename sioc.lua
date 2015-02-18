@@ -254,7 +254,7 @@ k.sioc.receive = function ()
 			end
 			
 		else
-			logData("---Log: SIOC Message Incorrect ; non type Arn.Resp ; Message Ignoré -----", "\n")
+			k.log("---Log: SIOC Message Incorrect ; non type Arn.Resp ; Message Ignoré -----", "\n")
 		end
     end
 end
