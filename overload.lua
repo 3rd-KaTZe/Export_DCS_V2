@@ -1,15 +1,16 @@
+
+k.exportFC3done = false
+k.current_aircraft = nil
+
 local PrevLuaExportStart=LuaExportStart;
 
 LuaExportStart=function()
-
 ---- (Hook) Works once just before mission start.
 	k.mission_start(); -- Initialisation du FPS checker
-			
 	if PrevLuaExportStart then
 		PrevLuaExportStart();
 	end
 end
-
 
 ------------------------------------------------------------------------
 --    Séquence : avant chaque image            							  --
