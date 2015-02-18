@@ -6,7 +6,6 @@ k.debug = true
 k.dir = {}
 k.dir.main = lfs.writedir().."/Scripts"
 k.dir.logs = lfs.writedir().."/Logs/KatzePit"
-k.current_aircraft = nil
 k.config = {}
 k.sioc = {}
 k.loop = {} -- boucles d'export
@@ -62,9 +61,6 @@ k.info("configuration chargée")
 
 dofile(lfs.writedir().."Scripts\\sioc.lua")
 dofile(lfs.writedir().."Scripts\\low_level.lua")
-
-
-k.exportFC3done = false
 
 
 k.mission_start = function()
