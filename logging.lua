@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
--- Logging & debug
+env.info("KTZ_PIT: chargement du module \"logging\"")
+
 k.log_file = nil -- fichier log
 
 k.make_log_file = function()
@@ -50,4 +50,4 @@ k.info = function(message)
 end
 	
 
-k.log("module de logging chargé")
+env.info("KTZ_PIT: chargement du module \"logging\" réussi")
