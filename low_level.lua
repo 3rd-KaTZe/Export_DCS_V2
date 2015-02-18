@@ -1,3 +1,5 @@
+env.info("KTZ_PIT: chargement des fonctions de bas niveau")
+
 k.file_exists = function(p)
 	env.info("test de l'existence du fichier: "..p)
 	local f=io.open(p,'r')
@@ -17,3 +19,5 @@ new_dofile = function(p)
 	env.info("fichier chargé")
 end
 dofile = new_dofile
+
+env.info("KTZ_PIT: chargement des fonctions de bas niveau réussi")
