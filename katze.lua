@@ -8,22 +8,12 @@ k.dir.main = lfs.writedir().."/Scripts"
 k.dir.logs = lfs.writedir().."/Logs/KatzePit"
 k.config = {}
 k.sioc = {}
-k.loop = {} -- boucles d'export
-k.loop = {}
-k.loop.fast = nil
-k.loop.slow = nil
-k.loop.sample = {}
-k.loop.next_sample = {}
-k.loop.sample.fast = nil
-k.loop.sample.slow = nil
-k.loop.sample.fps = nil
-k.loop.next_sample.fast = nil
-k.loop.next_sample.slow = nil
-k.loop.next_sample.fps = nil
+k.loop = {fast=nil, slow=nil}
+k.loop.sample = {fast=nil, slow=nil, fps=nil}
+k.loop.next_sample = {fast=nil, slow=nil, fps=nil}
 k.loop.start_time = nil
 k.loop.current_time = nil
-k.loop.fps_counter = {}
-k.loop.fps_counter.tot = 0
+k.loop.fps = {counter=0, tot=0, min=-1, max=0, 10=0, 20=0, 30=0, 40=0, 50=0, 60=0}
 
 k.ka50 = {export={}}
 k.mi8 = {export={}}
@@ -62,13 +52,7 @@ dofile(lfs.writedir().."Scripts\\low_level.lua")
 k.mission_start = function()
 	k.log("début d'une nouvelle mission")
 	k.log("remise à zéro des compteurs de FPS")
-	k.loop.fps = {}
-	k.loop.fps[10] = 0
-	k.loop.fps[20] = 0
-	k.loop.fps[30] = 0
-	k.loop.fps[40] = 0
-	k.loop.fps[50] = 0
-	k.loop.fps[60] = 0
+	k.loop.fps = {counter=0, tot=0, min=-1, max=0, 10=0, 20=0, 30=0, 40=0, 50=0, 60=0}
 	-- Mise à zero du panel armement dans SIOC
 	
 	k.log("test de la connexion avec SIOC")
