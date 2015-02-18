@@ -12,19 +12,11 @@ k.loop = {} -- boucles d'export
 k.loop = {}
 k.loop.fast = nil
 k.loop.slow = nil
-k.ka50 = {}
-k.ka50.export = {}
-k.mi8 = {}
-k.mi8.export = {}
-k.uh1 = {}
-k.uh1.export = {}
-k.fc3 = {}
-k.fc3.export = {}
 k.loop.sample = {}
+k.loop.next_sample = {}
 k.loop.sample.fast = nil
 k.loop.sample.slow = nil
 k.loop.sample.fps = nil
-k.loop.next_sample = {}
 k.loop.next_sample.fast = nil
 k.loop.next_sample.slow = nil
 k.loop.next_sample.fps = nil
@@ -32,6 +24,11 @@ k.loop.start_time = nil
 k.loop.current_time = nil
 k.loop.fps_counter = {}
 k.loop.fps_counter.tot = 0
+
+k.ka50 = {export={}}
+k.mi8 = {export={}}
+k.uh1 = {export={}}
+k.fc3 = {export={}}
 
 dofile(k.dir.main.."/low_level.lua")
 
