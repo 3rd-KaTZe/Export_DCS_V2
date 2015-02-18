@@ -103,7 +103,7 @@ k.fc3.export.slow = function(self)
 			-- le weapon panel type a changé, on le scan
 			
 			-- Reset du panel armement et du nombre de fuel tank
-			KTZ_FC3_Func:FC3_WeaponInit()
+			k.fc3.weapon_init()
 			local tank_nb = 0
 			
 			-- Scan du panel armement et envoi à SIOC
