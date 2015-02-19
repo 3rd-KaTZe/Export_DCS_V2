@@ -61,6 +61,8 @@ LuaExportActivityNextEvent = function(t)
 	if prevNextEvent then
 		prevNextEvent(t)
 	end
+	
+	return t + 1
 
 end
 	

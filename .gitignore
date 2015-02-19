@@ -1,0 +1,5 @@
+/witchcraft.lua
+*.lua
+*.lua.backup_ekpi
+*.7z
+*.zip
