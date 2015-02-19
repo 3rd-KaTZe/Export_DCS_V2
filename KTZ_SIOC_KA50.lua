@@ -236,7 +236,7 @@ k.ka50.export.slow = function(self)
 
 	
 	-- Export des quantités Rocket et Canon ----------------------------------------------------------------------
-	local wpncnt, cannoncnt = get_Weapon()
+	local wpncnt, cannoncnt = k.ka50.export.get_weapon()
 	if wpncnt and cannoncnt then
 		k.sioc.send(1014,50005000+ wpncnt * 10000 + cannoncnt)
 	end
@@ -249,7 +249,7 @@ k.ka50.export.slow = function(self)
 	
 	
 	-- Export de l'affichage du PVI800 ----------------------------------------------------------------------
-	local pvi1, pvi2, pvi3, pvi4 = get_PVI800()
+	local pvi1, pvi2, pvi3, pvi4 = k.ka50.export.pvi800()
 	if not pvi1 then pvi1 = 0 end
 	if not pvi2 then pvi2 = 0 end
 	if not pvi3 then pvi3 = 0 end
@@ -293,26 +293,26 @@ k.ka50.export.slow = function(self)
 	local c4 = 0
 	local c5 = 0
 	
-	local bout1,bout2,bout3,bout4,bout5  = get_Abris()
+	local bout1,bout2,bout3,bout4,bout5  = k.ka50.export.get_abris()
 	
 	if bout1 then 
-		c1 = abris_ref(bout1)
+		c1 = k.ka50.export.abris_ref(bout1)
 	end
 	
 	if bout2 then 
-		c2 = abris_ref(bout2)
+		c2 = k.ka50.export.abris_ref(bout2)
 	end
 	
 	if bout3 then 
-		c3 = abris_ref(bout3)
+		c3 = k.ka50.export.abris_ref(bout3)
 	end
 	
 	if bout4 then 
-		c4 = abris_ref(bout4)
+		c4 = k.ka50.export.abris_ref(bout4)
 	end
 	
 	if bout5 then 
-		c5 = abris_ref(bout5)
+		c5 = k.ka50.export.abris_ref(bout5)
 	end
 	
 		
