@@ -295,24 +295,25 @@ k.ka50.export.slow = function(self)
 	
 	local bout1,bout2,bout3,bout4,bout5  = k.ka50.export.get_abris()
 	
-	if bout1 then 
-		c1 = k.ka50.export.abris_ref(bout1)
-	end
-	
-	if bout2 then 
-		c2 = k.ka50.export.abris_ref(bout2)
-	end
-	
-	if bout3 then 
-		c3 = k.ka50.export.abris_ref(bout3)
+		
+	if bout5 then 
+		c5 = k.ka50.export.abris_ref(bout5)
 	end
 	
 	if bout4 then 
 		c4 = k.ka50.export.abris_ref(bout4)
 	end
 	
-	if bout5 then 
-		c5 = k.ka50.export.abris_ref(bout5)
+	if bout3 then 
+		c3 = k.ka50.export.abris_ref(bout3)
+	end
+	
+	if bout2 then 
+		c2 = k.ka50.export.abris_ref(bout2)
+	end
+	
+	if bout1 then 
+		c1 = k.ka50.export.abris_ref(bout1)
 	end
 	
 		
@@ -417,7 +418,7 @@ k.ka50.export.fast = function(self)
 	
 end
 
-k.ka50.export.abris_ref = function(self, item)
+k.ka50.export.abris_ref = function(item)
 
 	-- liste complète , problème caractère /\
 	-- local abrismenu = {"/\","\/",">",">>","ACTIV","ADD","ADD LIN","ADD PNT","ARC","AUTO","CALC","CANCEL","CLEAR","CTRL","DELETE","DRAW","EDIT","ENTER","ERBL","FPL","GNSS","HSI","INFO","LOAD","MAP","MARKER","MENU","MOVE","NAME","NAV","NE","REST"	,"OPTION","PLAN","PLAN","SAVE","SCALE -","SCALE +","SEARCH","SELECT","SETUP","SUSP","SYST","TEST","TGT VS","TO","TYPE","USER","VNAV","VNAV TO","WPT"}
@@ -427,6 +428,7 @@ k.ka50.export.abris_ref = function(self, item)
   
 	local count
 	count = 0
+	ret = nil
 	
 	for ii,xx in pairs(abrismenu) do
 		if item == xx then
@@ -436,9 +438,12 @@ k.ka50.export.abris_ref = function(self, item)
 		end
 	end
 	
+	return 48
+	
+	
 end
 
-k.ka50.export.get_weapon = function(self)
+k.ka50.export.get_weapon = function()
 -- Fonction de lecture du nombre de munitions restantes
 
 	local weapon_data = k.common.export.parse_indication(6)
@@ -455,7 +460,7 @@ k.ka50.export.get_weapon = function(self)
 			end
 end
 
-k.ka50.export.pvi800 = function(self)
+k.ka50.export.pvi800 = function()
 -- Fonction de l'afficheur PVI
 
 	local pvi_data = k.common.export.parse_indication(5)
@@ -475,7 +480,7 @@ k.ka50.export.pvi800 = function(self)
 			end
 end
 
-k.ka50.export.get_abris = function (self)
+k.ka50.export.get_abris = function ()
 -- fonction de lecture des codes des 5 boutons de l'Abris
 
 	local abris_data = k.common.export.parse_indication(3)
