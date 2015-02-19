@@ -205,11 +205,13 @@ k.fc3.export.slow = function(self)
 				local GF = (_MCP.GearFailure and 1 or 0);
 				local HF = (_MCP.HydraulicsFailure and 1 or 0);
 				local FTD = (_MCP.FuelTankDamage and 1 or 0);
-			end
+			
 			
 			local Alarm = 555555555 + HF * 10000000 + GF * 1000000 + RF * 100000 + EOSF * 10000 + ACMF * 1000 + APF * 100 + LEF * 10 + REF
 			
 			k.sioc.send(582,Alarm);
+			
+			end
 								
 		end
 		
