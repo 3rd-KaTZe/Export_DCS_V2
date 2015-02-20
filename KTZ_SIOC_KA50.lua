@@ -202,8 +202,9 @@ k.ka50.export.slow = function(self)
 
 	
 	local AP2_H = MainPanel:get_argument_value(175)		--  : Hover
-	local AP2_D = MainPanel:get_argument_value(172)		--  : Descente		
-	local AP2 = 55 + AP2_D * 10 + AP2_H 
+	local AP2_D = MainPanel:get_argument_value(172)		--  : Descente	
+	local AP2_ATT = math.floor(MainPanel:get_argument_value(437)*10)		--  : Autoturn		
+	local AP2 = 555 + AP2_ATT * 100 + AP2_D * 10 + AP2_H 
 	k.sioc.send(554,AP2)
 	
 	
