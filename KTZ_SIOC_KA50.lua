@@ -19,9 +19,12 @@ k.ka50.export.slow = function(self)
 	k.sioc.send(23,MainPanel:get_argument_value(191) * 1000)-- Position Collectif
 
 	-- ============== Horloge de Mission ============================================================		
-	k.sioc.send(42,LoGetModelTime())-- Heure de la mission
+	k.sioc.send(42,LoGetModelTime())-- Heure de la mission en secondes
+	k.sioc.send(48,MainPanel:get_argument_value(72)*43200)-- Flight Time en minutes
+	k.sioc.send(52,MainPanel:get_argument_value(73)*1800)-- Chronometre en secondes
+
 	
-	
+		
 	-- ============== Parametres Moteur (lents) ====================================================
 
 	local Oil_P_1 = math.floor(MainPanel:get_argument_value(252)*80)	-- Oil Pressure left gradué 0-8 kg/cm²
