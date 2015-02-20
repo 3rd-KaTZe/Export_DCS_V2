@@ -27,8 +27,8 @@ k.loop.next_sample.slow = nil
 k.loop.next_sample.fps = nil
 k.loop.start_time = nil
 k.loop.current_time = nil
-k.loop.fps_counter = {}
-k.loop.fps_counter.tot = 0
+k.loop.fps_counter = 0
+k.loop.fps_tot = 0
 
 
 
@@ -45,14 +45,14 @@ k.log = function (message)
 		
 		if not k.log_file then
 			-- création du fichier log si nécessaire
-       			k.log_file = io.open(lfs.writedir().."Logs\\KatzePit\\KTZ-SIOC5010_ComLog-"..os.date("%Y%m%d-%H%M")..".csv", "w")
+       			k.log_file = io.open(lfs.writedir().."Logs\\KatzePit\\KaTZPitLog_Flight_date_"..os.date("%Y%m%d-%H%M")..".csv", "w")
 				
 			-- Ecriture de l'entète dans le fichier
 			if k.log_file then
 				k.log_file:write("*********************************************;\n")
 				k.log_file:write("*     Fichier Log des Communications SIOC   *;\n")
 				k.log_file:write("*     Par KaTZe  -  http://www.3rd-wing.net *;\n")
-				k.log_file:write("*     Version FC3  du 02/02/2015            *;\n")
+				k.log_file:write("*     Version DCS-FC3  du 02/02/2015        *;\n")
 				k.log_file:write("*********************************************;\n\n")
 			end
 			
@@ -113,6 +113,7 @@ k.mission_start = function()
 	k.loop.fps[40] = 0
 	k.loop.fps[50] = 0
 	k.loop.fps[60] = 0
+	k.loop.fps[70] = 0
 	-- Mise à zero du panel armement dans SIOC
 	
 	k.log("test de la connexion avec SIOC")
@@ -131,12 +132,42 @@ end
 
 k.mission_end = function()
 	k.log("  ","\n")
-	k.log("--- Initialisation du Séquenceur ---" ,"\n")
+	k.log("--- Rapport de Vol ---" ,"\n")
 	k.log(string.format(" Mission Start Time (secondes) = %.0f",k.loop.start_time,"\n"))	
 	k.log(string.format(" Sampling Period 1 = %.1f secondes",k.loop.sample.fast,"\n"))
 	k.log(string.format(" Sampling Period 2 = %.1f secondes",k.loop.sample.slow,"\n"))
 	k.log(string.format(" Sampling Period FPS = %.1f secondes",k.loop.sample.fps,"\n"))
-	-- imprimer l'histogramme FPS ??
+	-- imprimer l'histogramme FPS
+	k.loop.fps_histo = {}
+	k.loop.fps_histo[10] = k.loop.fps[10] / k.loop.fps_tot * 100
+	k.loop.fps_histo[20] = k.loop.fps[20] / k.loop.fps_tot * 100
+	k.loop.fps_histo[30] = k.loop.fps[30] / k.loop.fps_tot * 100
+	k.loop.fps_histo[40] = k.loop.fps[40] / k.loop.fps_tot * 100
+	k.loop.fps_histo[50] = k.loop.fps[50] / k.loop.fps_tot * 100
+	k.loop.fps_histo[60] = k.loop.fps[60] / k.loop.fps_tot * 100
+	k.loop.fps_histo[70] = k.loop.fps[70] / k.loop.fps_tot * 100
+	
+	-- log des résultats
+	k.log(string.format(" Total Number of Frames = %.0f",k.loop.fps_tot,"\n"))
+	k.log(string.format(" Flight Duration = %.0f secondes",k.loop.current_time,"\n"))
+	k.log("  ","\n")
+	k.log(string.format("*** Average FPS =  %.1f ",k.loop.fps_tot/k.loop.current_time,"\n"))
+	k.log("  ","\n")
+	k.log(string.format("*** FPS < 10      = %.1f percent",k.loop.fps_histo[10],"\n"))
+	k.log(string.format("*** 10 < FPS < 20 = %.1f percent",k.loop.fps_histo[20],"\n"))
+	k.log(string.format("*** 20 < FPS < 30 = %.1f percent",k.loop.fps_histo[30],"\n"))
+	k.log(string.format("*** 30 < FPS < 40 = %.1f percent",k.loop.fps_histo[40],"\n"))
+	k.log(string.format("*** 40 < FPS < 50 = %.1f percent",k.loop.fps_histo[50],"\n"))
+	k.log(string.format("*** 50 < FPS < 60 = %.1f percent",k.loop.fps_histo[60],"\n"))
+	k.log(string.format("*** 60 < FPS      = %.1f percent",k.loop.fps_histo[70],"\n"))
+	k.log("  ","\n")
+	k.log("Miaou à tous !!!")
+	
+	
+	
+	
+	
+	
 end
 
 

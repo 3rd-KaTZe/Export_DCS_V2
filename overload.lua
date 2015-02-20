@@ -72,7 +72,10 @@ local PrevLuaExportAfterNextFrame=LuaExportAfterNextFrame;
 
 LuaExportAfterNextFrame = function()
 -- (Hook) Works just after every simulation frame.
-	k.log("LuaExportAfterNextFrame meuh")
+	k.log("LuaExportAfterNextFrame miaou")
+	
+	-- Incrément des fps à chaque frame
+	k.loop.fps_counter = k.loop.fps_counter + 1
 	
 	-- k.loop.fps_counter.tot = k.loop.fps_counter.tot + 1 -- buggé
 	k.loop.current_time = LoGetModelTime()
@@ -104,10 +107,30 @@ LuaExportAfterNextFrame = function()
 	
 	if k.loop.current_time >= k.loop.next_sample.fps then --*************************************** Boucle FPS
 		
-		k.update_fps() -- KAtze c'est quoi ça ???
-			
+		-- Interval de mesure des fps (defaut 5 secondes)
+		-- Incrément des frames totale de mission
+		k.loop.fps_tot = k.loop.fps_tot + k.loop.fps_counter
+		
+		-- Classement du nombre de frames de l'intervalle de temps dans l'histogramme
+		if k.loop.fps_counter < 10 * k.loop.sample.fps then
+			k.loop.fps[10] = k.loop.fps[10] + k.loop.fps_counter
+		elseif k.loop.fps_counter < 20 * k.loop.sample.fps then
+			k.loop.fps[20] = k.loop.fps[20] + k.loop.fps_counter
+		elseif k.loop.fps_counter < 30 * k.loop.sample.fps then
+			k.loop.fps[30] = k.loop.fps[30] + k.loop.fps_counter
+		elseif k.loop.fps_counter < 40 * k.loop.sample.fps then
+			k.loop.fps[40] = k.loop.fps[40] + k.loop.fps_counter
+		elseif k.loop.fps_counter < 50 * k.loop.sample.fps then
+			k.loop.fps[50] = k.loop.fps[50] + k.loop.fps_counter
+		elseif k.loop.fps_counter < 60 * k.loop.sample.fps then
+			k.loop.fps[60] = k.loop.fps[60] + k.loop.fps_counter
+		else
+			k.loop.fps[70] = k.loop.fps[70] + k.loop.fps_counter
+		end	
+		
 		-- remise à zero du compteur de frame de l'intervalle de temps
-		k.loop.fps_counter.tot = 0
+		k.loop.fps_counter = 0
+		
 		-- calcul de la date de fin du prochain intervalle de temps
 		k.loop.next_sample.fps = k.loop.current_time + k.loop.sample.fps
 	
