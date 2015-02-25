@@ -98,7 +98,7 @@ k.ka50.export.slow = function(self)
 
 	
 	-- ============== Parametres Electrique  ===========================================================
-	-- Panel Light --------------------------------------------------------------
+	-- Panel Light -------------------------------------------------------------- Test release
 	-- Position des switch Cockpit Lighting, Projo
 	-- ============== Status Light et NavLight ========================================================
 		local Light_S1 = MainPanel:get_argument_value(1001)		-- Position Switch Eclairage interne
